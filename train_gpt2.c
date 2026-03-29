@@ -192,7 +192,7 @@ void matmul_forward(float* out,
     // out will be (B,T,OC)
 
     // make sure the tiled loop will be correct or fallback to naive version
-    const int LOOP_UNROLL = 8;
+    enum { LOOP_UNROLL = 8 };
     if (B*T % LOOP_UNROLL != 0) {
         matmul_forward_naive(out, inp, weight, bias, B, T, C, OC);
         return;
